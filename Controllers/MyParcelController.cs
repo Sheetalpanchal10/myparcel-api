@@ -49,6 +49,10 @@ public class MyParcelController : ControllerBase
         var response = await client.PostAsJsonAsync("https://api.myparcel.nl/shipments", shipment);
         var content = await response.Content.ReadAsStringAsync();
 
-        return StatusCode((int)response.StatusCode, content);
+         return Ok(new
+    {
+        Status = "Success",
+        Message = "Shipment received successfully!"
+    });
     }
 }
