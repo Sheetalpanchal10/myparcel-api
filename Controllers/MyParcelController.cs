@@ -45,7 +45,7 @@ public class MyParcelController : ControllerBase
 
             var client = _httpClientFactory.CreateClient();
             client.DefaultRequestHeaders.Add("Authorization", "your-api-key-here");
-            client.DefaultRequestHeaders.Add("Content-Type", "application/json");
+           // client.DefaultRequestHeaders.Add("Content-Type", "application/json");
 
             var response = await client.PostAsJsonAsync("https://api.myparcel.nl/shipments", shipment);
             var content = await response.Content.ReadAsStringAsync();
