@@ -19,3 +19,4 @@ C:\MyParcel\Parcel GPT\MyParcelShipmentAPI_NET9\MyParcelShipmentAPI\obj\Debug\ne
 C:\MyParcel\Parcel GPT\MyParcelShipmentAPI_NET9\MyParcelShipmentAPI\obj\Debug\net9.0\MyParcelShipmentAPI.pdb
 C:\MyParcel\Parcel GPT\MyParcelShipmentAPI_NET9\MyParcelShipmentAPI\obj\Debug\net9.0\MyParcelShipmentAPI.genruntimeconfig.cache
 C:\MyParcel\Parcel GPT\MyParcelShipmentAPI_NET9\MyParcelShipmentAPI\obj\Debug\net9.0\ref\MyParcelShipmentAPI.dll
+C:\MyParcel\Parcel GPT\MyParcelShipmentAPI_NET9\MyParcelShipmentAPI\obj\Debug\net9.0\MyParcelShipmentAPI.sourcelink.json

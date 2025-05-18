@@ -19,14 +19,15 @@ public class MyParcelController : ControllerBase
     {
         return Ok("MyParcel API is running ✅");
     }
-
     [HttpPost]
     public async Task<IActionResult> CreateShipment([FromBody] ShipmentRequest input)
     {
-        var shipment = new
+        try
         {
-            data = new[]
+            var shipment = new
             {
+                data = new[]
+                {
                 new
                 {
                     recipient = new
@@ -40,19 +41,38 @@ public class MyParcelController : ControllerBase
                     }
                 }
             }
-        };
+            };
 
-        var client = _httpClientFactory.CreateClient();
-        client.DefaultRequestHeaders.Add("Authorization", "your-api-key-here");
-        client.DefaultRequestHeaders.Add("Content-Type", "application/json");
+            var client = _httpClientFactory.CreateClient();
+            client.DefaultRequestHeaders.Add("Authorization", "your-api-key-here");
+            client.DefaultRequestHeaders.Add("Content-Type", "application/json");
 
-        var response = await client.PostAsJsonAsync("https://api.myparcel.nl/shipments", shipment);
-        var content = await response.Content.ReadAsStringAsync();
+            var response = await client.PostAsJsonAsync("https://api.myparcel.nl/shipments", shipment);
+            var content = await response.Content.ReadAsStringAsync();
 
-         return Ok(new
-    {
-        Status = "Success",
-        Message = "Shipment received successfully!"
-    });
+            if (!response.IsSuccessStatusCode)
+            {
+                return StatusCode((int)response.StatusCode, new
+                {
+                    Status = "Error",
+                    MyParcelResponse = content
+                });
+            }
+
+            return Ok(new
+            {
+                Status = "Success",
+                Message = "Shipment received successfully!",
+                MyParcelResponse = content
+            });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new
+            {
+                Status = "Failure",
+                Error = ex.Message
+            });
+        }
     }
 }
