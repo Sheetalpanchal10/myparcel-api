@@ -1,8 +1,12 @@
 
-using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Net.Http;
-using System.Net.Http.Json;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+
 
 [ApiController]
 [Route("api/[controller]")]
@@ -21,17 +25,17 @@ public class MyParcelController : ControllerBase
         //return ContentResult;
     }
     [HttpPost]
-    [HttpPost]
-    public async Task<IActionResult> CreateShipment([FromBody] ShipmentRequest input)
+   public async Task<IActionResult> CreateShipment([FromBody] ShipmentRequest input)
+{
+    try
     {
-        try
+        // Build your shipment object
+        var shipmentPayload = new
         {
-            var shipment = new
+            data = new
             {
-                data = new
+                shipments = new[]
                 {
-                    shipments = new[]
-                    {
                     new
                     {
                         reference_identifier = input.ReferenceIdentifier,
@@ -65,40 +69,52 @@ public class MyParcelController : ControllerBase
                         carrier = input.Carrier
                     }
                 }
-                }
-            };
-
-            var client = _httpClientFactory.CreateClient();
-            client.DefaultRequestHeaders.Add("Authorization", "Bearer MGUxYzE0ODFlOTIzZDExZWRhNGQzZGI5ZmVkNGMwNGEyMWNhZDVjNg");
-            client.DefaultRequestHeaders.Add("Content-Type", "application/vnd.shipment+json;version=1.1;charset=utf-8");
-            client.DefaultRequestHeaders.Add("User-Agent", "CustomApiCall/2");
-
-            var response = await client.PostAsJsonAsync("https://api.myparcel.nl/shipments", shipment);
-            var content = await response.Content.ReadAsStringAsync();
-
-            if (!response.IsSuccessStatusCode)
-            {
-                return StatusCode((int)response.StatusCode, new
-                {
-                    Status = "Error",
-                    MyParcelResponse = content
-                });
             }
+        };
 
-            return Ok(new
-            {
-                Status = "Success",
-                Message = "Shipment created successfully!",
-                MyParcelResponse = content
-            });
-        }
-        catch (Exception ex)
+        // Serialize the shipment manually
+        var json = JsonSerializer.Serialize(shipmentPayload);
+        var content = new StringContent(json, Encoding.UTF8, "application/vnd.shipment+json");
+
+        // Custom content-type header
+        content.Headers.ContentType = new MediaTypeHeaderValue("application/vnd.shipment+json")
         {
-            return StatusCode(500, new
+            CharSet = "utf-8",
+            Parameters = { new NameValueHeaderValue("version", "1.1") }
+        };
+
+        var client = _httpClientFactory.CreateClient();
+
+        // Set custom headers
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "BASE64_ENCODED_API_KEY");
+        client.DefaultRequestHeaders.UserAgent.ParseAdd("CustomApiCall/2");
+
+        var response = await client.PostAsync("https://api.myparcel.nl/shipments", content);
+        var responseBody = await response.Content.ReadAsStringAsync();
+
+        if (!response.IsSuccessStatusCode)
+        {
+            return StatusCode((int)response.StatusCode, new
             {
-                Status = "Failure",
-                Error = ex.Message
+                Status = "Error",
+                MyParcelResponse = responseBody
             });
         }
+
+        return Ok(new
+        {
+            Status = "Success",
+            Message = "Shipment created successfully!",
+            MyParcelResponse = responseBody
+        });
     }
+    catch (Exception ex)
+    {
+        return StatusCode(500, new
+        {
+            Status = "Failure",
+            Error = ex.Message
+        });
+    }
+}
 }
