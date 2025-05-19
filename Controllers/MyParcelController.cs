@@ -69,7 +69,9 @@ public class MyParcelController : ControllerBase
             };
 
             var client = _httpClientFactory.CreateClient();
-            client.DefaultRequestHeaders.Add("Authorization", "Bearer YOUR_MY_PARCEL_API_KEY");
+            client.DefaultRequestHeaders.Add("Authorization", "Bearer MGUxYzE0ODFlOTIzZDExZWRhNGQzZGI5ZmVkNGMwNGEyMWNhZDVjNg");
+            client.DefaultRequestHeaders.Add("Content-Type", "application/vnd.shipment+json;version=1.1;charset=utf-8");
+            client.DefaultRequestHeaders.Add("User-Agent", "CustomApiCall/2");
 
             var response = await client.PostAsJsonAsync("https://api.myparcel.nl/shipments", shipment);
             var content = await response.Content.ReadAsStringAsync();

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MyParcelShipmentAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+eb735e0ae3cb8801df3cfdf92ca6cc4ef3eabbea")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9af96df3fdcfbf87713295f56b4f883947e6db8e")]
 [assembly: System.Reflection.AssemblyProductAttribute("MyParcelShipmentAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MyParcelShipmentAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
