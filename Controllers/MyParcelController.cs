@@ -18,7 +18,9 @@ public class MyParcelController : ControllerBase
     public IActionResult Test()
     {
         return Ok("MyParcel API is running ✅");
+        //return ContentResult;
     }
+    [HttpPost]
     [HttpPost]
     public async Task<IActionResult> CreateShipment([FromBody] ShipmentRequest input)
     {
@@ -26,27 +28,48 @@ public class MyParcelController : ControllerBase
         {
             var shipment = new
             {
-                data = new[]
+                data = new
                 {
-                new
-                {
-                    recipient = new
+                    shipments = new[]
                     {
-                        name = input.RecipientName,
-                        street = input.Street,
-                        postal_code = input.PostalCode,
-                        city = input.City,
-                        country_code = input.CountryCode,
-                        email = input.Email
+                    new
+                    {
+                        reference_identifier = input.ReferenceIdentifier,
+                        recipient = new
+                        {
+                            cc = input.Recipient.CountryCode,
+                            region = input.Recipient.Region,
+                            city = input.Recipient.City,
+                            street = input.Recipient.Street,
+                            number = input.Recipient.Number,
+                            postal_code = input.Recipient.PostalCode,
+                            person = input.Recipient.Person,
+                            phone = input.Recipient.Phone,
+                            email = input.Recipient.Email
+                        },
+                        options = new
+                        {
+                            package_type = input.Options.PackageType,
+                            only_recipient = input.Options.OnlyRecipient,
+                            signature = input.Options.Signature,
+                            @return = input.Options.Return,
+                            insurance = new
+                            {
+                                amount = input.Options.Insurance.Amount,
+                                currency = input.Options.Insurance.Currency
+                            },
+                            large_format = input.Options.LargeFormat,
+                            label_description = input.Options.LabelDescription,
+                            age_check = input.Options.AgeCheck
+                        },
+                        carrier = input.Carrier
                     }
                 }
-            }
+                }
             };
 
             var client = _httpClientFactory.CreateClient();
-            //client.DefaultRequestHeaders.Add("Authorization", "your-api-key-here");
-            client.DefaultRequestHeaders.Add("Authorization", "Bearer MGUxYzE0ODFlOTIzZDExZWRhNGQzZGI5ZmVkNGMwNGEyMWNhZDVjNg");
-           // client.DefaultRequestHeaders.Add("Content-Type", "application/json");
+            client.DefaultRequestHeaders.Add("Authorization", "Bearer YOUR_MY_PARCEL_API_KEY");
 
             var response = await client.PostAsJsonAsync("https://api.myparcel.nl/shipments", shipment);
             var content = await response.Content.ReadAsStringAsync();
@@ -63,7 +86,7 @@ public class MyParcelController : ControllerBase
             return Ok(new
             {
                 Status = "Success",
-                Message = "Shipment received successfully!",
+                Message = "Shipment created successfully!",
                 MyParcelResponse = content
             });
         }
