@@ -86,7 +86,7 @@ public class MyParcelController : ControllerBase
         var client = _httpClientFactory.CreateClient();
 
         // Set custom headers
-        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "BASE64_ENCODED_API_KEY");
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "MGUxYzE0ODFlOTIzZDExZWRhNGQzZGI5ZmVkNGMwNGEyMWNhZDVjNg");
         client.DefaultRequestHeaders.UserAgent.ParseAdd("CustomApiCall/2");
 
         var response = await client.PostAsync("https://api.myparcel.nl/shipments", content);
