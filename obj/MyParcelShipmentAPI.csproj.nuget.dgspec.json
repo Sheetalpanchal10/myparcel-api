@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\MyParcel\\Parcel GPT\\MyParcelShipmentAPI_NET9\\MyParcelShipmentAPI\\MyParcelShipmentAPI.csproj": {}
+    "c:\\MyParcel\\Parcel GPT\\MyParcelShipmentAPI_NET9\\MyParcelShipmentAPI\\MyParcelShipmentAPI.csproj": {}
   },
   "projects": {
-    "C:\\MyParcel\\Parcel GPT\\MyParcelShipmentAPI_NET9\\MyParcelShipmentAPI\\MyParcelShipmentAPI.csproj": {
+    "c:\\MyParcel\\Parcel GPT\\MyParcelShipmentAPI_NET9\\MyParcelShipmentAPI\\MyParcelShipmentAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\MyParcel\\Parcel GPT\\MyParcelShipmentAPI_NET9\\MyParcelShipmentAPI\\MyParcelShipmentAPI.csproj",
+        "projectUniqueName": "c:\\MyParcel\\Parcel GPT\\MyParcelShipmentAPI_NET9\\MyParcelShipmentAPI\\MyParcelShipmentAPI.csproj",
         "projectName": "MyParcelShipmentAPI",
-        "projectPath": "C:\\MyParcel\\Parcel GPT\\MyParcelShipmentAPI_NET9\\MyParcelShipmentAPI\\MyParcelShipmentAPI.csproj",
+        "projectPath": "c:\\MyParcel\\Parcel GPT\\MyParcelShipmentAPI_NET9\\MyParcelShipmentAPI\\MyParcelShipmentAPI.csproj",
         "packagesPath": "C:\\Users\\Sheetaladmin\\.nuget\\packages\\",
-        "outputPath": "C:\\MyParcel\\Parcel GPT\\MyParcelShipmentAPI_NET9\\MyParcelShipmentAPI\\obj\\",
+        "outputPath": "c:\\MyParcel\\Parcel GPT\\MyParcelShipmentAPI_NET9\\MyParcelShipmentAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Sheetaladmin\\AppData\\Roaming\\NuGet\\NuGet.Config"
