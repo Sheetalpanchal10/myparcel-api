@@ -48,6 +48,7 @@ public class MyParcelController : ControllerBase
                             number = input.Recipient.Number,
                             postal_code = input.Recipient.PostalCode,
                             person = input.Recipient.Person,
+                            company = input.Recipient.Company,
                             phone = input.Recipient.Phone,
                             email = input.Recipient.Email
                         },
