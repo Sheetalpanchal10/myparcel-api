@@ -15,6 +15,7 @@ public class RecipientInfo
     public string Number { get; set; }
     public string PostalCode { get; set; }
     public string Person { get; set; }
+    public string Company { get; set; }
     public string Phone { get; set; }
     public string Email { get; set; }
 }
