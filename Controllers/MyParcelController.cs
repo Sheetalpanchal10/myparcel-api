@@ -70,9 +70,8 @@ public class MyParcelController : ControllerBase
                         carrier = input.Carrier,
                         physical_properties = new
                         {
-                            
                             weight = input.PhysicalProperties.Weight
-                        },
+                        }
                     }
                 }
             }
