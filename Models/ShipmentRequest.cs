@@ -4,6 +4,8 @@ public class ShipmentRequest
     public RecipientInfo Recipient { get; set; }
     public ShipmentOptions Options { get; set; }
     public int Carrier { get; set; }
+
+    public PhysicalProperties PhysicalProperties { get; set; }
 }
 
 public class RecipientInfo
@@ -36,4 +38,9 @@ public class InsuranceInfo
 {
     public int Amount { get; set; }
     public string Currency { get; set; }
+}
+public class PhysicalProperties
+{
+    
+    public int Weight { get; set; }
 }
