@@ -67,7 +67,12 @@ public class MyParcelController : ControllerBase
                             label_description = input.Options.LabelDescription,
                             age_check = input.Options.AgeCheck
                         },
-                        carrier = input.Carrier
+                        carrier = input.Carrier,
+                        physical_properties = new
+                        {
+                            
+                            weight = input.PhysicalProperties.Weight
+                        },
                     }
                 }
             }
